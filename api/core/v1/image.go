@@ -17,7 +17,7 @@ type ImageUploadRes struct {
 }
 
 type ImageShowReq struct {
-	g.Meta `path:"/image/{code}/{name}" method:"get" sm:"Show core"`
+	g.Meta `path:"/image/{code}/{name}" method:"get" sm:"Show image"`
 	corein.ImageDownloadInp
 }
 
@@ -26,7 +26,7 @@ type ImageShowRes struct {
 }
 
 type ImageDeleteReq struct {
-	g.Meta `path:"/delete/{code}" method:"get" sm:"Delete core"`
+	g.Meta `path:"/delete/{code}" method:"get" sm:"Delete image"`
 	corein.ImageDeleteInp
 }
 
