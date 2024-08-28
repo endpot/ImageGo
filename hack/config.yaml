@@ -1,0 +1,17 @@
+
+# CLI tool, only in development environment.
+# https://goframe.org/pages/viewpage.action?pageId=3673173
+gfcli:
+  docker:
+    build: "-a amd64 -s linux -p temp -ew"
+    tagPrefixes:
+      - my.core.pub/my-app
+  gen:
+    dao:
+      - link: "mysql:root:123456@tcp(127.0.0.1:3306)/imagego?loc=Local&parseTime=true&charset=utf8mb4"
+        removePrefix: ""
+        descriptionTag: true
+        noModelComment: true
+        jsonCase: "CamelLower"
+        gJsonSupport: true
+        clear: true
