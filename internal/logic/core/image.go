@@ -70,7 +70,7 @@ func (s *sCoreImage) Upload(ctx context.Context, in *corein.ImageUploadInp) (*en
 	}
 
 	originalName := in.Image.Filename
-	originalExtension := gfile.ExtName(originalName)
+	originalExtension := s.getImageExtension(ctx, originalName)
 	imageSize := in.Image.Size
 	nsfw := gconv.Int(in.Nsfw)
 
@@ -236,6 +236,15 @@ func (s *sCoreImage) getLocalPath(_ context.Context, filename string) string {
 
 func (s *sCoreImage) getRemotePath(_ context.Context, filename string) string {
 	return gfile.Join("upload", "images", filename)
+}
+
+func (s *sCoreImage) getImageExtension(_ context.Context, filename string) string {
+	ext := gfile.ExtName(filename)
+	if ext == "" {
+		return "jpg"
+	}
+
+	return ext
 }
 
 func (s *sCoreImage) getImageDimension(_ context.Context, file *ghttp.UploadFile) (int, int, error) {
