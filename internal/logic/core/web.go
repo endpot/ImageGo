@@ -47,7 +47,7 @@ func (s *sCoreWeb) GetRecentImageList(ctx context.Context, in *corein.WebHomeInp
 	columns := dao.Image.Columns()
 
 	var imageList []*entity.Image
-	err := dao.Image.Ctx(ctx).Where(columns.Nsfw, in.Nsfw).OrderDesc(columns.Id).Limit(randomPictureCount).Scan(&imageList)
+	err := dao.Image.Ctx(ctx).Where(columns.Nsfw, in.Nsfw).Group(columns.Fingerprint).OrderDesc(columns.Id).Limit(randomPictureCount).Scan(&imageList)
 	if err != nil {
 		return nil, err
 	}
