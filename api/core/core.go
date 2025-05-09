@@ -11,6 +11,7 @@ import (
 )
 
 type ICoreV1 interface {
+	Health(ctx context.Context, req *v1.HealthReq) (res *v1.HealthRes, err error)
 	ImageUpload(ctx context.Context, req *v1.ImageUploadReq) (res *v1.ImageUploadRes, err error)
 	ImageShow(ctx context.Context, req *v1.ImageShowReq) (res *v1.ImageShowRes, err error)
 	ImageDelete(ctx context.Context, req *v1.ImageDeleteReq) (res *v1.ImageDeleteRes, err error)
